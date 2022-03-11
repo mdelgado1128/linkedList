@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -17,20 +18,19 @@ Node *sortedIntersect(Node *a, Node *b)
   Node *tail = &dummy;
   dummy.next = NULL;
 
-  while (a != NULL && b != NULL)
+  while (a != NULL)
   {
-    if (a->data == b->data)
-    {
-      push((&tail->next), a->data);
-      tail = tail->next;
-      a = a->next;
-      b = b->next;
-    }
 
-    else if (a->data < b->data)
-      a = a->next;
-    else
-      b = b->next;
+    push((&tail->next), a->data);
+
+    tail = tail->next;
+    a = a->next;
+  }
+  while (b != NULL)
+  {
+    push((&tail->next), b->data);
+    tail = tail->next;
+    b = b->next;
   }
   return (dummy.next);
 }
@@ -82,7 +82,14 @@ int main()
 
   intersect = sortedIntersect(a, b);
 
-  cout << "Linked list with common nodes of list a and b \n";
+  cout << "Linked list a \n";
+  printList(a);
+  cout << endl;
+  cout << "Linked list b \n";
+  printList(b);
+  cout << endl;
+  cout << "Union of a and b\n";
   printList(intersect);
+
   cout << " " << endl;
 }

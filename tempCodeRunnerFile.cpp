@@ -1,1 +1,1 @@
-printList(intersect)
+cout << *it << " ";
